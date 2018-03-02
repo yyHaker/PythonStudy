@@ -18,3 +18,8 @@
 - QtSvg模块提供了显示SVG文件内容的类。可伸缩矢量图形（SVG）是一种描述二维图形和图形应用的语言。
 - QtSql模块提供操作数据库的类。
 - QtTest包含的功能，使pyqt5应用程序的单元测试
+
+## 资源
+[1] PyQt5中文教程：http://code.py40.com/pyqt5/14.html
+[2] PyQt5英文教程：http://zetcode.com/gui/pyqt5/
+

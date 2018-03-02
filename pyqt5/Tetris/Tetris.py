@@ -8,7 +8,9 @@
 - Tetromino:四方格， 包含所有俄罗斯方块
 - Shape: 保存方块信息, 包含方块旋转操作
 
-TODO: fix some bugs
+TODO:
+[1] fix some bugs
+[2] 理解Board面板中绘制图形的原理
 """
 import random
 import sys
@@ -187,7 +189,7 @@ class Board(QFrame):
     # 创建自定义型号用于发送信息到状态栏
     msg2StatusBar = pyqtSignal(str)
 
-    # 定义块的大小和游戏速度
+    # 定义块(什么块？)的大小和游戏速度
     BoardWidth = 10
     BoardHeight = 22
     Speed = 300
@@ -202,7 +204,8 @@ class Board(QFrame):
         self.curX = 0
         self.curY = 0
         self.numLinesRemoved = 0
-        # 代表面板上的各种形状和位置
+
+        # 一个从0到7的数字列表, 记录多种形状的位置和目前剩余的形状
         self.board = []
 
         self.setFocusPolicy(Qt.StrongFocus)
@@ -210,8 +213,12 @@ class Board(QFrame):
         self.isPaused = False
         self.clearBoard()
 
-    # 确定在给定形状块的类型(x和y是什么？)
+        print("self.contentsRect().width(): ", self.contentsRect().width())
+        print("self.contentsRect().height()", self.contentsRect().height())
+
+    # 确定在给定形状块的类型(x和y是什么？坐标是怎么定义的？)
     def shapeAt(self, x, y):
+        """determines shape at the board position"""
         return self.board[(y * Board.BoardWidth) + x]
 
     def setShapeAt(self, x, y, shape):
@@ -266,7 +273,7 @@ class Board(QFrame):
         """
         painter = QPainter(self)
         rect = self.contentsRect()
-
+        print(rect.bottom())
         boardTop = rect.bottom() - Board.BoardHeight * self.squareHeight()
 
         # 绘制所有方块
@@ -289,7 +296,6 @@ class Board(QFrame):
                                 self.curPiece.shape())
 
     def keyPressEvent(self, event):
-
         if not self.isStarted or self.curPiece.shape() == Tetromino.NoShape:
             super(Board, self).keyPressEvent(event)
             return
@@ -338,30 +344,26 @@ class Board(QFrame):
             super(Board, self).timerEvent(event)
 
     def clearBoard(self):
-
+        """
+        clears shapes from the board.
+        :return:
+        """
         for i in range(Board.BoardHeight * Board.BoardWidth):
             self.board.append(Tetromino.NoShape)
 
     def dropDown(self):
-
         newY = self.curY
-
         while newY > 0:
-
             if not self.tryMove(self.curPiece, self.curX, newY - 1):
                 break
-
             newY -= 1
-
         self.pieceDropped()
 
     def oneLineDown(self):
-
         if not self.tryMove(self.curPiece, self.curX, self.curY - 1):
             self.pieceDropped()
 
     def pieceDropped(self):
-
         for i in range(4):
             x = self.curX + self.curPiece.x(i)
             y = self.curY - self.curPiece.y(i)
@@ -373,7 +375,6 @@ class Board(QFrame):
             self.newPiece()
 
     def removeFullLines(self):
-
         numFullLines = 0
         rowsToRemove = []
 
@@ -404,7 +405,6 @@ class Board(QFrame):
             self.update()
 
     def newPiece(self):
-
         self.curPiece = Shape()
         self.curPiece.setRandomShape()
         self.curX = Board.BoardWidth // 2 + 1
@@ -417,7 +417,6 @@ class Board(QFrame):
             self.msg2Statusbar.emit("Game over")
 
     def tryMove(self, newPiece, newX, newY):
-
         for i in range(4):
             x = newX + newPiece.x(i)
             y = newY - newPiece.y(i)
@@ -436,7 +435,8 @@ class Board(QFrame):
         return True
 
     def drawSquare(self, painter, x, y, shape):
-        """
+        """draws a square of a shape.
+        it contains 4 lines and a fillRect.
         :param painter: QPainter
         :param x:
         :param y:
