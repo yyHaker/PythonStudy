@@ -1,3 +1,6 @@
-2018-04-12 16:58:12,988 - __main__ - INFO - Start print log
-2018-04-12 16:58:12,988 - __main__ - WARNING - Something maybe fail.
-2018-04-12 16:58:12,988 - __main__ - INFO - Finish
+2018-04-12 20:56:52,849 - __main__ - INFO - Start print log
+2018-04-12 20:56:52,849 - __main__ - WARNING - Something maybe fail.
+2018-04-12 20:56:52,849 - __main__ - INFO - Finish
+2018-04-12 20:56:59,098 - __main__ - INFO - Start print log
+2018-04-12 20:56:59,098 - __main__ - WARNING - Something maybe fail.
+2018-04-12 20:56:59,098 - __main__ - INFO - Finish
