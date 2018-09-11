@@ -6,7 +6,7 @@ This repository is to save the coding map.
 ##  coding map
 [1] 2018年9月10日 (LetterCombinations)[https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/]
 
-[2]
+[2] 2018年9月11日 (ValidParenses)[https://leetcode.com/problems/valid-parentheses/description/]
 
 [3]
 
