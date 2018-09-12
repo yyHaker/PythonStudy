@@ -8,7 +8,7 @@ This repository is to save the coding map.
 
 [2] 2018年9月11日 (ValidParenses)[https://leetcode.com/problems/valid-parentheses/description/]
 
-[3]
+[3]2018年9月12日 (ZigZagConversion)[https://leetcode.com/problems/zigzag-conversion/description/]
 
 [4]
 
