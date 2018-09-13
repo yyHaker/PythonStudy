@@ -10,7 +10,7 @@ This repository is to save the coding map.
 
 [3]2018年9月12日 (ZigZagConversion)[https://leetcode.com/problems/zigzag-conversion/description/]
 
-[4]
+[4]2018年9月13日 (RemoveNodes)[https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/]
 
 [5]
 
