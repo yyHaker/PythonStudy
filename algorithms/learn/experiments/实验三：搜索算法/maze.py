@@ -325,4 +325,4 @@ def exp2():
 
 
 if __name__ == "__main__":
-    exp2()
+    exp1()
