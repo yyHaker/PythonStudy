@@ -7,25 +7,24 @@
 @file: binarySearch.py
 @time: 2019/2/20 10:49
 """
-def binarySearch(alist, item):
+def binarySearch(alist, k):
     """普通版本的二分查找
     :param alist:
-    :param item:
+    :param k:
     :return:
     """
-    first = 0
-    last = len(alist) - 1
-    found = False
-
-    while first <= last and not found:
-        mid = (first + last) // 2
-        if alist[mid] == item:
-            found = True
-        elif item > alist[mid]:
-            first = mid + 1
+    left = 0
+    right = len(alist) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if k == alist[mid]:
+            return mid
+        elif k < alist[mid]:
+            right = mid - 1
         else:
-            last = mid - 1
-    return found
+            left = mid + 1
+    return -1
+
 
 def binarySearch_fz(alist, item):
     """分治版本的二分查找，时间复杂度O(logn)
@@ -46,5 +45,46 @@ def binarySearch_fz(alist, item):
         else:
             return binarySearch_fz(alist[:mid], item)
 
+def binarySearch_yesleft(alist, k):
+    """
+    找到并且返回最左边的位置, 没有找到就返回右边最接近的位置.
+    :param alist:
+    :param k:
+    :return:
+    """
+    left = 0
+    right = len(alist) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if k <= alist[mid]:
+            right = mid - 1
+        else:
+            left = mid + 1
+    return left
+
+def binarySearch_yesright(alist, k):
+    """
+    找到并且返回最右边的位置，没有找到就返回左边最接近的位置.
+    :param alist:
+    :param k:
+    :return:
+    """
+    left = 0
+    right = len(alist) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if k < alist[mid]:
+            right = mid - 1
+        else:
+            left = mid + 1
+    return right
+
+
 if __name__ == "__main__":
-    print(binarySearch_fz([1, 2, 3, 4, 5, 6, 7], 8))
+    nums = [1, 2, 2, 4, 4, 8, 10]
+    nums = [4, 4]
+    res = binarySearch(nums, 3)
+    print(res)
+    print("*"*5)
+    res = binarySearch_yesright(nums, 3)
+    print(res)

@@ -1,0 +1,87 @@
+"""编程小技巧
+@author: yyhaker
+@contact: 572176750@qq.com
+@file: little_tricks.py
+@time: 2019/4/30 09:43
+"""
+1. 利用好迭代器
+         python中的迭代器每次只产生一个对象，适当的使用可以节省内存。而且它能达
+   到"延迟计算"的效果，即迭代到了那个对象才会去计算。
+   例如：any(i%3 == 0 for i in numbers)找出第一个能被3整除的值就直接返回
+
+2. 交换变量
+   在python中只需要一行, 例如交换a和b： a, b = b, a
+
+3.  计数使用Counter计数对象
+    一般在统计某些数据的时候很有用，例如：
+    >>>from collections import Counter
+    >>>c = Counter("hello world")
+    >>>c
+    Counter({'l': 3, 'o': 2, ' ': 1, 'e': 1, 'd': 1, 'h': 1, 'r': 1, 'w': 1})
+    >>> c.most_common(2)
+    [('l', 3), ('o', 2)]
+
+4. 漂亮的打印出json数据
+        json是一种非常好的数据序列化的形式，然而当json数据很长的时候，如果显示一行很难看清楚，
+    可以利用indent参数来输出漂亮的json，这在控制台交互式编程或做日志时，尤其有用！
+    >>>import json
+    >>>print(json.dumps(data, indent=2))   # with indention
+    {
+  "status": "OK",
+  "count": 2,
+  "results": [
+
+    {
+      "age": 27,
+      "name": "Oz",
+
+      "lactose_intolerant": True
+    },
+    {
+      "age": 29,
+
+      "name": "Joe",
+      "lactose_intolerant": False
+    }
+  ]
+    }
+
+5. 同时迭代多个列表
+    A = ["h", "e", "f", "g"]
+    B = [1, 2, 5, 2]
+    for a, b in zip(A, B):
+        print(a + " " + b)
+
+6. 使用f-string
+    >>> name = "Tom"
+    >>> age = 3
+    >>> f"His name is {name}, he's {age} years old."
+    >>> "His name is Tom, he's 3 years old."
+
+7. 构建神经网络，计算Tensor张量操作的时候，写好张量维度注释，这将极大的增加Debug的难度
+    例如下面使用PyTorch计算张量的attention：
+    #  paras self-align layer
+    # [b*max_p_num, 1, max_p_len] * [b*max_p_num, max_p_len,  2*d] ---> [b*max_p_num, 1,  2*d] --> [b*max_p_num, 2*d]
+    rps = torch.bmm(align_weight_p.unsqueeze(1), paras_combine).squeeze(1)
+
+8. 使用lambda可以是代码很简洁
+    例如：
+    calculator = {
+     'plus' : lambda x,y : x + y,
+    'minus' : lambda x,y : x - y
+    }
+    res = calculator['plus'](2, 3)
+
+9. zip置换矩阵
+    例如：
+    matrix = [[1, 2, 3],[4, 5, 6]]
+    res = zip( *matrix )   # res = [(1, 4), (2, 5), (3, 6)]
+
+10.  写函数养成良好习惯，遵循以下原则：
+        命名合理：简单、清晰、合理
+        单一职责：一个函数应该只有一个职责
+        包含文档字符串
+        返回一个值
+        一个函数不要写太长，不超过 50 行
+
+
