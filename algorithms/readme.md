@@ -2,7 +2,9 @@
 
 [1]《算法导论》
 
+[2] 《剑指offer》
 
+[3] Leetcode
 
 
 ## resource
