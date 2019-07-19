@@ -9,7 +9,7 @@
 """
 """
 剑指offer：旋转数组的最小数字
-思路：二分法，旋转数组实际上是两个有序的数组
+思路：二分法，旋转数组实际上是两个有序的数组, 时间复杂度为O(logn)
 """
 class Solution:
     def minNumberInRotateArray(self, rotateArray):
