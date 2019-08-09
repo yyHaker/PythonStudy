@@ -16,9 +16,6 @@ cut[i] = min(1+cut[j+1], cut[i]), if d[i][j] == 1
 参考题解：https://blog.csdn.net/Jin_Kwok/article/details/51423222
 """
 class Solution(object):
-    def __init__(self):
-        self.min_split = 0
-
     def minCut(self, s):
         """
         :type s: str
