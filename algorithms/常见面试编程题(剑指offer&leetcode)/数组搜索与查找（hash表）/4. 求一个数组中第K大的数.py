@@ -9,7 +9,7 @@
 """
 """
 leetcode:215：求一个数组中第k大的数
-思路：快速选择，利用快排的第一步思想;平均时间复杂度为O(n), 空间复杂度为O(1)
+思路：快速选择，利用快排的第一步思想。平均时间复杂度为O(n), 空间复杂度为O(1)
 """
 class Solution(object):
     def findKthLargest(self, nums, k):
@@ -31,6 +31,7 @@ class Solution(object):
                 low = p + 1
 
     def partition(self, nums, low, high):
+        # 二路划分
         pivot = nums[high]
         start = low
         for i in range(low, high):
