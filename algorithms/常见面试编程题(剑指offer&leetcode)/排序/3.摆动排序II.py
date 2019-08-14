@@ -14,6 +14,7 @@ leetcode324: 摆动排序
     2. 先找出中位数mid, 再用中位数mid对数组进行三路划分。时间复杂度为O(n), 空间复杂度为O(1)
 
 吐槽：同样的思路c++实现效率很高，而python实现效率很低超时
+参考：https://blog.csdn.net/qq508618087/article/details/51337187
 """
 class Solution1(object):
     def wiggleSort(self, nums):
