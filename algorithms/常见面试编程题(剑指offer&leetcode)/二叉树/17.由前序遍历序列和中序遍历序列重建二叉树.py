@@ -30,3 +30,26 @@ class Solution(object):
             tree_root.left = self.reConstructBinaryTree(pre[1: tin.index(pre[0])+1], tin[0: tin.index(pre[0])])
             tree_root.right = self.reConstructBinaryTree(pre[tin.index(pre[0])+1:], tin[tin.index(pre[0])+1:])
 
+# (二刷)
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution2(object):
+    def buildTree(self, preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        # 思路：递归构造树
+        if len(preorder) == 0:
+            return None
+        root = TreeNode(preorder[0])
+        idx = inorder.index(preorder[0])
+        root.left = self.buildTree(preorder[1: 1+idx], inorder[0:idx])
+        root.right = self.buildTree(preorder[1+idx: ], inorder[idx+1: ])
+        return root

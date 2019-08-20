@@ -9,6 +9,7 @@
 """
 """
 剑指offer：二叉搜索树的第k个结点
+leetcode230: 二叉搜索树中第k小的元素 
 """
 # class TreeNode:
 #     def __init__(self, x):
@@ -31,3 +32,34 @@ class Solution:
             self.inorder(root.left)
             self.res.append(root)
             self.inorder(root.right)
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution2(object):
+    def kthSmallest(self, root, k):
+        """
+        :type root: TreeNode
+        :type k: int
+        :rtype: int
+        """
+        # 非递归遍历二叉搜索树， 得到第k个结点的值
+        count = 0
+        stack = []
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            if stack:
+                t = stack.pop()
+                # 访问结点的值
+                count += 1
+                if count == k:
+                    return t.val
+                root = t.right
+
