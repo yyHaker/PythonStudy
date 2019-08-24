@@ -8,6 +8,8 @@
 @time: 2019/7/18 10:23
 """
 """
+剑指offer：求一个整数的二进制表示中位1的个数(考虑负数)
+leetcode191：求一个无符号整数中位1的个数
 思路：
 如果一个整数不为0，那么这个整数至少有一位是1。如果我们把这个整数减1，那么原来处在整数最右边的1就会变为0，原来在1
 后面的所有的0都会变成1(如果最右边的1后面还有0的话)。其余所有位将不会受到影响。
@@ -18,9 +20,12 @@
 次这样的操作。
 但是负数使用补码表示的，对于负数，最高位为1，而负数在计算机是以补码存在的，往右移，符号位不变，符号位1往右移，
 最终可能会出现全1的情况，导致死循环。与0xffffffff相与，就可以消除负数的影响
+
+参考：
+【1】https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html（源码、反码、补码）
 """
 class Solution:
-    def NumberOf1(self, n):
+    def hammingWeight(self, n):
         # write code here
         count = 0
         if n < 0:
@@ -29,3 +34,22 @@ class Solution:
             n = n & (n-1)
             count += 1
         return count
+
+
+class Solution2(object):
+    def hammingWeight(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        # 若n为无符号整数
+        count = 0
+        while n:
+            n = n & (n-1)
+            count += 1
+        return count
+
+n = -3
+solution = Solution()
+res = solution.hammingWeight(n)
+print(res)
